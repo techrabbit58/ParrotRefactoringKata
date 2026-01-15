@@ -23,6 +23,8 @@ class Parrot:
                 return max(0, self._base_speed() - self._load_factor() * self._number_of_coconuts)
             case ParrotType.NORWEGIAN_BLUE:
                 return 0 if self._nailed else self._compute_base_speed_for_voltage(self._voltage)
+            case _:
+                raise ValueError(f"Unknown parrot type: {self._type}")
 
     def cry(self):
         match self._type:
@@ -32,12 +34,16 @@ class Parrot:
                 return "Sqaark!"
             case ParrotType.NORWEGIAN_BLUE:
                 return "Bzzzzzz" if self._voltage > 0 else "..."
+            case _:
+                raise ValueError(f"Unknown parrot type: {self._type}")
 
     def _compute_base_speed_for_voltage(self, voltage):
         return min([24.0, voltage * self._base_speed()])
 
-    def _load_factor(self):
+    @staticmethod
+    def _load_factor():
         return 9.0
 
-    def _base_speed(self):
+    @staticmethod
+    def _base_speed():
         return 12.0
