@@ -47,3 +47,7 @@ class Parrot:
     @staticmethod
     def _base_speed():
         return 12.0
+
+
+def new_parrot(parrot_type: ParrotType, num_coconuts: int, voltage: float, nailed: bool) -> Parrot:
+    return Parrot(parrot_type, num_coconuts, voltage, nailed)
