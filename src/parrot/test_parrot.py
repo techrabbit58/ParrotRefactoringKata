@@ -1,7 +1,7 @@
 from .parrot import ParrotType, new_parrot
 
 
-def test_speed_of_european_make_new_parrot():
+def test_speed_of_european_parrot():
     parrot = new_parrot(ParrotType.EUROPEAN, 0, 0, False)
     assert parrot.speed() == 12.0
 
