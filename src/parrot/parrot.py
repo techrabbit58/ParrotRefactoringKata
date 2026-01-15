@@ -8,7 +8,6 @@ class ParrotType(Enum):
 
 
 class Parrot:
-
     def __init__(self, type_of_parrot, number_of_coconuts, voltage, nailed):
         self._type = type_of_parrot
         self._number_of_coconuts = number_of_coconuts
@@ -49,5 +48,30 @@ class Parrot:
         return 12.0
 
 
+class EuropeanParrot(Parrot):
+    def __init__(self, number_of_coconuts: int, voltage: float, nailed: bool) -> None:
+        super().__init__(ParrotType.EUROPEAN, number_of_coconuts, voltage, nailed)
+
+
+class AfricanParrot(Parrot):
+    def __init__(self, number_of_coconuts: int, voltage: float, nailed: bool) -> None:
+        super().__init__(ParrotType.AFRICAN, number_of_coconuts, voltage, nailed)
+
+
+class NorwegianBlue(Parrot):
+    def __init__(self, number_of_coconuts: int, voltage: float, nailed: bool) -> None:
+        super().__init__(ParrotType.NORWEGIAN_BLUE, number_of_coconuts, voltage, nailed)
+
+
 def new_parrot(parrot_type: ParrotType, num_coconuts: int, voltage: float, nailed: bool) -> Parrot:
-    return Parrot(parrot_type, num_coconuts, voltage, nailed)
+    parrot = None
+    match parrot_type:
+        case ParrotType.AFRICAN:
+            parrot = AfricanParrot(num_coconuts, voltage, nailed)
+        case ParrotType.EUROPEAN:
+            parrot = EuropeanParrot(num_coconuts, voltage, nailed)
+        case ParrotType.NORWEGIAN_BLUE:
+            parrot = NorwegianBlue(num_coconuts, voltage, nailed)
+        case _:
+            raise ValueError(f"Unknown parrot type: {parrot_type}")
+    return parrot
