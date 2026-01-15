@@ -1,3 +1,5 @@
+from dis import UNKNOWN
+
 import pytest
 
 from .parrot import ParrotType, new_parrot
@@ -58,7 +60,10 @@ def test_cry_norwegian_blue_parrot_no_voltage():
     assert parrot.cry() == "..."
 
 
+UNKNOWN_PARROT_TYPE = "snafu"
+
+
 def test_make_unknown_parrot():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match=UNKNOWN_PARROT_TYPE):
         # noinspection PyTypeChecker
-        new_parrot("snafu")
+        new_parrot(UNKNOWN_PARROT_TYPE)
