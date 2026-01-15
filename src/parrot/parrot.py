@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from enum import Enum
 
 
@@ -7,7 +8,7 @@ class ParrotType(Enum):
     NORWEGIAN_BLUE = 3
 
 
-class Parrot:
+class Parrot(ABC):
     def __init__(self, type_of_parrot, number_of_coconuts, voltage, nailed):
         self._type = type_of_parrot
         self._number_of_coconuts = number_of_coconuts
@@ -25,16 +26,9 @@ class Parrot:
             case _:
                 raise ValueError(f"Unknown parrot type: {self._type}")
 
+    @abstractmethod
     def cry(self):
-        match self._type:
-            case ParrotType.EUROPEAN:
-                return "Sqoork!"
-            case ParrotType.AFRICAN:
-                return "Sqaark!"
-            case ParrotType.NORWEGIAN_BLUE:
-                return "Bzzzzzz" if self._voltage > 0 else "..."
-            case _:
-                raise ValueError(f"Unknown parrot type: {self._type}")
+        raise NotImplementedError()
 
     def _compute_base_speed_for_voltage(self, voltage):
         return min([24.0, voltage * self._base_speed()])
@@ -52,15 +46,24 @@ class EuropeanParrot(Parrot):
     def __init__(self, number_of_coconuts: int, voltage: float, nailed: bool) -> None:
         super().__init__(ParrotType.EUROPEAN, number_of_coconuts, voltage, nailed)
 
+    def cry(self):
+        return "Sqoork!"
+
 
 class AfricanParrot(Parrot):
     def __init__(self, number_of_coconuts: int, voltage: float, nailed: bool) -> None:
         super().__init__(ParrotType.AFRICAN, number_of_coconuts, voltage, nailed)
 
+    def cry(self):
+        return "Sqaark!"
+
 
 class NorwegianBlue(Parrot):
     def __init__(self, number_of_coconuts: int, voltage: float, nailed: bool) -> None:
         super().__init__(ParrotType.NORWEGIAN_BLUE, number_of_coconuts, voltage, nailed)
+
+    def cry(self):
+        return "Bzzzzzz" if self._voltage > 0 else "..."
 
 
 def new_parrot(parrot_type: ParrotType, num_coconuts: int, voltage: float, nailed: bool) -> Parrot:
