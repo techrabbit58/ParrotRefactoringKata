@@ -13,4 +13,4 @@ class NorwegianBlue(Parrot):
         return "Bzzzzzz" if self._voltage > 0 else "..."
 
     def _compute_base_speed_for_voltage(self, voltage) -> float:
-        return min([24.0, voltage * self._base_speed()])
+        return min([24.0, voltage * self.BASE_SPEED])
