@@ -6,9 +6,7 @@ class Parrot(ABC):
     BASE_SPEED = 12.0
 
     @abstractmethod
-    def speed(self) -> str:
-        raise NotImplementedError()
+    def speed(self) -> str: pass
 
     @abstractmethod
-    def cry(self) -> str:
-        raise NotImplementedError()
+    def cry(self) -> str: pass
