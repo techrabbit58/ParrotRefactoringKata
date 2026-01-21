@@ -8,7 +8,8 @@ There is a Guided Learning Hour using this exercise:
 
 ## Acknowlegements
 
-This code is heavily inspired by one of the examples in Martin Fowler's book "Refactoring".
+This original code is heavily inspired by one of the examples in Martin 
+Fowler's book "Refactoring".
 I found it after having watched a video provided by Emily Bache on [YT](https://youtu.be/pO_5DQ3vDtc?si=cwxsb8DgcmYeSFR0).
 I just wanted to try it for myself.
 
